@@ -34,21 +34,7 @@
   cursor: pointer;
   text-decoration: none;
 }
-.backend .list .function .export-area{
-  display: flex;
-  align-items: center;
-  margin-block: 10px;
-}
-.backend .list .function .export-area select,.backend .list .function .export-area option{
-  font-size: 18px;
-  padding: 3px 5px;
-  outline: none;
-  border: 2px solid #0c0950;
-  border-radius: 3px;
-}
-.backend .list .function .export-area .export{
-  margin-left: 5px;
-}
+
 .backend .list table {
   border-collapse: collapse;
   width: clamp(400px, 80%, 1000px);
@@ -150,7 +136,7 @@
   border: 2px solid #0c0950;
   border-radius: 3px;
 }
-.backend .main .form form .upload-image{
+.backend .main .form form #upload-image{
   width: 300px;
   height: 260px;
   border: 2px solid .0c0950;
@@ -160,26 +146,17 @@
   justify-content: center;
   cursor: pointer;
 }
-.backend .main .form form .upload-image img{
+.backend .main .form form #upload-image img{
   width: 80%;
   height: 80%;
  object-fit: contain;
 }
-.backend .main .form form .image{
+.backend .main .form form #image{
   display: none;
 }
-.backend .main .form form .image-remind{
+.backend .main .form form #image-remind{
   font-size: 14px;
   color: rgba(0,0,0,0.7);
-}
-.backend .main .form form .status {
-  margin-block: 5px;
-}
-.backend .main .form form .status label :first-child {
-  margin-right: 10px;
-}
-.backend .main .form form .status label :not(:first-child) {
-  margin-inline: 10px;
 }
 .backend .main .form form .button {
   margin-block: 5px;

@@ -1,44 +1,4 @@
 @import url("https://fonts.googleapis.com/css2?family=Charm:wght@400;700&display=swap");
-/*chrome,opera,safari,edge客製捲軸*/
-#game #content::-webkit-scrollbar {
-  -webkit-appearance: none;
-  width: 5px;
-}
-#game #content::-webkit-scrollbar-track {
-  background: none;
-}
-#game #content::-webkit-scrollbar-thumb {
-  background-color: #674636;
-  border-radius: 12px;
-}
-
-//客製化input range track
-#setting #options .custom-range::-webkit-slider-runnable-track{
-  background-color: #f7eed3;
-  height: 0.5rem;
-}
-#setting #options .custom-range::-moz-range-track{
-  background-color: #f7eed3;
-  height: 0.5rem;
-}
-//客製化input range thumb
-#setting #options .custom-range::-webkit-slider-thumb{
-  -webkit-appearance: none; /* Override default look */
-  appearance: none;
-  width: 1rem;
-  height: 2rem;
-  background-color: #674636;
-  position: relative;
-  top: -0.75rem;
-}
-#setting #options .custom-range::-moz-range-thumb{
-  border: none; /*Removes extra border that FF applies*/
-  border-radius: 0; /*Removes default border-radius that FF applies*/
-  appearance: none;
-  width: 1rem;
-  height: 2rem;
-  background-color: #674636;
-}
 
 * {
   padding: 0;
@@ -47,27 +7,15 @@
   scroll-behavior: smooth;
   overflow: hidden;
   font-family: "Charm", cursive;
-  cursor: none;
 }
-$color1: #fff8e8;
-$color2: #f7eed3;
-$color4: #674636;
+$colo1:#D7D7D7;
+$colo2:#FE7743;
+$color3:#447D9B;
+$color4:#273F4F;
 $transitionTime: 0.5s;
 $getInTime: 1s;
 
-#logo-image {
-  display: none;
-}
-#mouse {
-    position: absolute;
-    width: 2rem;
-    height: 2rem;
-    z-index: 1;
-    pointer-events: none;//客製鼠標本身不要當鼠標事件的對象，不然會干擾到原本鼠標對象的事件
-    img{
-        width: 100%;
-    }
-}
+
 
 #entry {
   display: flex;
@@ -76,30 +24,10 @@ $getInTime: 1s;
   justify-content: space-between;
   align-items: center;
   height: 100dvh;
-  background-color: #fff8e8;
-  #close-game-button {
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    z-index: 1;
-    color: #674636;
-    background: none;
-    border: none;
-    font-size: 2rem;
-    transition: $transitionTime;
-    &:hover {
-      filter: brightness(1.5);
-    }
-  }
+  background-color: $colo1;
+ 
   #title {
     padding-block-start: 2dvh;
-    .letter {
-      opacity: 0;
-      transition-duration: 1s;
-      color: #674636;
-      font-size: 8rem;
-      font-weight: 700;
-    }
   }
   #middle {
     width: 100%;
@@ -160,29 +88,8 @@ $getInTime: 1s;
     border-image-width: 5px;
     border-image-repeat: stretch;
     border-image-slice: 5; */
-    #gear{
-      position: absolute;
-      right: 20px;
-      top: 20px;
-      background: none;
-      border: none;
-      width: 2rem;
-      height: 2rem;
-      transition: $transitionTime;
-      img{
-        width: 100%;
-      }
-      &:hover {
-        filter: brightness(1.5);
-      }
-    }
-    time{
-      position: absolute;
-      right: 20px;
-      top: 60px;
-      color: #674636;
-      font-size: 2rem;
-    }
+    
+    
     #icon{
       position: absolute;
       left: 0;
@@ -258,176 +165,14 @@ $getInTime: 1s;
   
     
 }
-#setting{
-  display: none;
-  place-items: center;
-  position: relative;
-  height: 100dvh;
-  background-color: #fff8e8;
-  /* border-image-source: url('image/wood.jpg');
-  border-image-width: 5px;
-  border-image-repeat: stretch;
-  border-image-slice: 5; */
-  border: 5px solid #674636;
-  #back-to-game{
-    position: absolute;
-    right: 20px;
-    top: 20px;
-    background: none;
-    border: none;
-    width: 2rem;
-    height: 2rem;
-    transition: $transitionTime;
-    img{
-      width: 100%;
-    }
-    &:hover {
-      filter: brightness(1.5);
-    }
-  }
-  #options{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-   /*  border-image-source: url('image/wood.jpg');
-    border-image-width: 5px;
-    border-image-repeat: stretch;
-    border-image-slice: 5; */
-    border: 5px solid #674636;
-    padding: 30px;
-    width: 200px;
-    .subtitles{
-      font-size: 2rem;
-      color: #674636;
-    }
-    #music-box{
-      display: block;
-      position: relative;
-      width: 32px;
-      height: 32px;
-      #setting-music{
-          position: absolute;
-          opacity: 0;
-          &:checked ~ #custom-checkbox::after{
-              display: flex;
-          }
-      }
-      #custom-checkbox{
-          display: block;
-          position: absolute;
-          left: 0;
-          top: calc(50% - 16px);
-          height: 32px;
-          width: 32px;
-          background-color: #f7eed3;
-          border: 3px solid #674636;
-          &::after{
-              content: "✔";
-              position: absolute;
-              display: none;
-             justify-content: center;
-             align-items: center;
-              height: 32px;
-              width: 32px;
-              left: -3px;
-              top: -3px;
-              color: #fff8e8;
-              font-size: 1.5rem;
-              background-color: #674636;
-          }
-      }
-  }
-  .custom-range{
-    appearance: none;
-    width: 100%;
-    margin-block: 30px;
-    overflow: visible;
-    background-color:$transparent ;
-  }
-  #left-game-button{
-      font-size: 1.5rem;
-      border: none;
-      background-color: #674636;
-      color: #fff8e8;
-      padding-inline: 10px;
-      transition: $transitionTime;
-      &:hover {
-        filter: brightness(1.5);
-      }
-    }
-  }
-}
-#close-game-dialog {
-  position: fixed;
-  left: calc(50% - 125px);
-  top: calc(50% - 75px);
-  transform: translateY(100px);
-  opacity: 0;
-  background-color: #f7eed3;
-  width: 250px;
-  height: 150px;
-  border: 3px solid #674636;
-  transition: $transitionTime;
-  #close-dialog-button {
-    position: absolute;
-    right: 15px;
-    top: 5px;
-    border: none;
-    background: none;
-    color: #674636;
-    font-size: 1.3rem;
-    transition: $transitionTime;
-    &:hover {
-      filter: brightness(1.5);
-    }
-  }
-  #message {
-    color: #674636;
-    font-size: 2rem;
-    text-align: center;
-  }
-  #buttons {
-    width: 100%;
-    display: flex;
-    justify-content: space-evenly;
-    margin-block-start: 10px;
-    #confirm,
-    #cancel {
-      font-size: 1.5rem;
-      border: none;
-      background-color: #674636;
-      color: #fff8e8;
-      padding-inline: 10px;
-      transition: $transitionTime;
-      &:hover {
-        filter: brightness(1.5);
-      }
-    }
-  }
-  &.open {
-    transform: none;
-    opacity: 1;
-  }
-}
 
-@for $i from 1 through 13 {
-  #entry #title .letter:nth-of-type(#{$i}) {
-    transition-delay: 0.1s + ($i - 1) * 0.05s;
-  }
-}
+
+
 
 @media screen and (max-width: 576px) {
-  *{
-    cursor: auto;
-  }
-  #mouse{
-    display: none;
-  }
+  
   #entry {
     #title {
-      .letter {
-        font-size: 2rem;
-      }
     }
     #middle {
       flex-direction: column-reverse;
@@ -463,9 +208,7 @@ $getInTime: 1s;
 @media screen and (min-width: 577px) and (max-width: 767px) {
   #entry {
     #title {
-      .letter {
-        font-size: 4rem;
-      }
+   
     }
     #middle {
       flex-direction: column-reverse;
@@ -491,9 +234,7 @@ $getInTime: 1s;
 @media screen and (min-width: 768px) and (max-width: 992px) {
   #entry {
     #title {
-      .letter {
-        font-size: 6rem;
-      }
+     
     }
     #middle {
       #start {
@@ -503,17 +244,11 @@ $getInTime: 1s;
   }
 }
 @media screen and (orientation: landscape) and (min-width: 400px) and (max-height: 576px) {
-  *{
-    cursor: auto;
-  }
-  #mouse{
-    display: none;
-  }
+ 
+ 
   #entry {
     #title {
-      .letter {
-        font-size: 2.5rem;
-      }
+    
     }
     #middle {
       #start {
@@ -535,44 +270,6 @@ $getInTime: 1s;
       margin-block-end: 20px;
     }
   }
-  #setting{
-    #back-to-game{
-      width: 1.5rem;
-      height: 1.5rem;
-    }
-    #options{
-      width: 500px;
-      padding: 10px 30px;
-      .subtitles{
-        font-size: 1rem;
-      }
-      #music-box{
-        width: 24px;
-        height: 24px;    
-        #custom-checkbox{
-            top: calc(50% - 12px);
-            height: 24px;
-            width: 24px;
-            &::after{
-                height: 24px;
-                width: 24px;
-                left: -3px;
-                top: -3px;
-                color: #fff8e8;
-                font-size: 1rem;
-                background-color: #674636;
-            }
-        }
-    }
-      .custom-range{
-        margin-block: 15px;
-      }
-      #left-game-button{
-        font-size: 1rem;
-      }
-    }
-   
-   
-  }
+ 
  
 }
