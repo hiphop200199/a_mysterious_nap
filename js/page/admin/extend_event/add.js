@@ -8,6 +8,8 @@ const name = document.getElementById("name");
 const nameError = document.getElementById("name-error");
 const voiceOver = document.getElementById("voice-over");
 const voiceOverError = document.getElementById("voice-over-error");
+const sequence = document.getElementById("sequence");
+const sequenceError = document.getElementById("sequence-error");
 const imageFile = document.getElementById('image');
 const imageSource = document.getElementById('upload-image-source')
 const cancel = document.getElementById("cancel");
@@ -20,7 +22,7 @@ const alertBtn = document.getElementById("submit-alert");
 initialSituation.addEventListener("change", checkInitialSituationId);
 name.addEventListener("change", checkName);
 voiceOver.addEventListener("change",checkVoiceOver);
-
+sequence.addEventListener("change",checkSequence);
 
 imageFile.addEventListener('change',function(e){
   const file = imageFile.files[0]
@@ -51,13 +53,15 @@ form.addEventListener("submit", async function (e) {
   checkInitialSituationId();
   checkName();
   checkVoiceOver();
-  if(!initialSituation.value||!name.value||!voiceOver.value)return;
+  checkSequence();
+  if(!initialSituation.value||!name.value||!voiceOver.value||!sequence.value)return;
  
   try {
     const param = {
       initial_situation_id: initialSituation.value,
       name:name.value,
       voice_over:voiceOver.value,
+      sequence:sequence.value,
       image:imageFile.files[0],
       manage: "extend_event",
       task: "create",
@@ -113,4 +117,12 @@ function checkInitialSituationId(){
     return;
   }
   initialSituationError.style.display = "none";
+}
+
+function checkSequence(){
+  if (!sequence.value) {
+    sequenceError.style.display = "inline";
+    return;
+  }
+  sequenceError.style.display = "none";
 }

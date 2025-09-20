@@ -1,15 +1,12 @@
 import { SUCCESS } from "../constant.js";
 import { backend } from "../../request_model.js";
 
-const form = document.getElementById("joke-edit");
+
+const form = document.getElementById("ending-edit");
 const name = document.getElementById("name");
 const nameError = document.getElementById("name-error");
 const voiceOver = document.getElementById("voice-over");
 const voiceOverError = document.getElementById("voice-over-error");
-const sequence = document.getElementById("sequence");
-const sequenceError = document.getElementById("sequence-error");
-const imageFile = document.getElementById("image");
-const imageSource = document.getElementById("upload-image-source");
 const cancel = document.getElementById("cancel");
 const loading = document.getElementById("loading-mask");
 const alertLB = document.getElementById("alert-mask");
@@ -21,47 +18,24 @@ const id = query.get("id");
 
 
 name.addEventListener("change", checkName);
-voiceOver.addEventListener("change",checkVoiceOver);
-sequence.addEventListener("change",checkSequence);
+voiceOver.addEventListener("change", checkVoiceOver);
 
-imageFile.addEventListener("change", function (e) {
-  const file = imageFile.files[0];
-  const allowFileTypes = ["image/png", "image/jpg", "image/jpeg", "image/gif"];
- 
 
-  if (!allowFileTypes.includes(file.type)) {
-    imageFile.value = "";
-    alertMessage.innerText = "檔案格式不符";
-    alertBtn.onclick = function () {
-      alertLB.style.display = "none";
-    };
-    alertLB.style.display = "block";
-    return;
-  }
 
-  const reader = new FileReader();
-  reader.onload = function (e) {
-    imageSource.src = e.target.result;
-  };
-  reader.readAsDataURL(file);
-});
 
 form.addEventListener("submit", async function (e) {
   e.preventDefault();
-
   checkName();
   checkVoiceOver();
-  checkSequence();
-  if(!name.value||!voiceOver.value||!sequence.value)return;
-  
+
+  if (!name.value||!voiceOver.value) return;
+ 
   try {
     const param = {
       id: id,
-      name:name.value,
-      voice_over:voiceOver.value,
-      sequence:sequence.value,
-      image:imageFile.files[0],
-      manage: "extend_event",
+      name: name.value,
+      voice_over: voiceOver.value,
+      manage: "extend_event_result",
       task: "edit",
     };
     loading.style.display = "block";
@@ -101,7 +75,7 @@ function checkName() {
   nameError.style.display = "none";
 }
 
-function checkVoiceOver(){
+function checkVoiceOver() {
   if (!voiceOver.value) {
     voiceOverError.style.display = "inline";
     return;
@@ -109,10 +83,3 @@ function checkVoiceOver(){
   voiceOverError.style.display = "none";
 }
 
-function checkSequence(){
-  if (!sequence.value) {
-    sequenceError.style.display = "inline";
-    return;
-  }
-  sequenceError.style.display = "none";
-}

@@ -1,7 +1,7 @@
 <?php
 
 require_once $_SERVER['DOCUMENT_ROOT'] . '/database/db.php';
-class Extend_event_model
+class Extend_event_option_model
 {
     private $db;
     public function __construct(Db $db)
@@ -10,7 +10,7 @@ class Extend_event_model
     }
     public function getList()
     {
-        $sql = 'SELECT * FROM  extend_event';
+        $sql = 'SELECT * FROM  extend_event_option';
         $stmt =  $this->db->conn->prepare($sql);
         $stmt->execute();
         $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
@@ -19,18 +19,18 @@ class Extend_event_model
 
     public function get($id)
     {
-        $sql = 'SELECT * FROM extend_event WHERE id = ? ';
+        $sql = 'SELECT * FROM extend_event_option WHERE id = ? ';
         $stmt =  $this->db->conn->prepare($sql);
         $stmt->execute([$id]);
         $result = $stmt->fetch(PDO::FETCH_ASSOC);
         return $result;
     }
 
-    public function create($initialSituationId, $name, $voiceOver, $imageSourceString,$sequence)
+    public function create($extendEventId, $name, $voiceOver, $isEnd,$awakeDegreeAdjust)
     {
-        $sql = 'INSERT INTO extend_event VALUES( ?,?,?,?,?,?,?,? ) ';
+        $sql = 'INSERT INTO extend_event_option VALUES( ?,?,?,?,?,?,?,? ) ';
         $stmt =  $this->db->conn->prepare($sql);
-        $stmt->execute([null,$initialSituationId, $name, $voiceOver, $imageSourceString,$sequence, time(), time()]);
+        $stmt->execute([null,$extendEventId,$isEnd,$awakeDegreeAdjust, $name, $voiceOver, time(), time()]);
         if ($stmt->rowCount() == 1) {
             $result = SUCCESS;
             return $result;
@@ -39,11 +39,11 @@ class Extend_event_model
         return $result;
     }
 
-    public function edit($id, $name, $voiceOver, $imageSourceString,$sequence)
+    public function edit($id, $name, $voiceOver,$isEnd,$awakeDegreeAdjust)
     {
-        $sql = 'UPDATE extend_event SET name = ?,voice_over = ?,image = ?,sequence = ?,update_time = ? WHERE id = ?';
+        $sql = 'UPDATE extend_event_option SET name = ?,voice_over = ?,is_end = ?,awake_degree_adjust = ?,update_time = ? WHERE id = ?';
         $stmt =  $this->db->conn->prepare($sql);
-        $stmt->execute([$name,$voiceOver, $imageSourceString,$sequence, time(), $id]);
+        $stmt->execute([$name,$voiceOver, $isEnd,$awakeDegreeAdjust, time(), $id]);
         if ($stmt->rowCount() == 1) {
             $result = SUCCESS;
             return $result;
@@ -54,7 +54,7 @@ class Extend_event_model
 
     public function delete($id)
     {
-        $sql = 'DELETE FROM extend_event WHERE id = ? ';
+        $sql = 'DELETE FROM extend_event_option WHERE id = ? ';
         $stmt =  $this->db->conn->prepare($sql);
         $stmt->execute([$id]);
         if ($stmt->rowCount() == 1) {
@@ -65,17 +65,7 @@ class Extend_event_model
         return $result;
     }
 
-    public function getMaxId()
-    {
-        $sql = 'SELECT id FROM extend_event ORDER BY id DESC LIMIT 1 ';
-        $stmt =  $this->db->conn->prepare($sql);
-        $stmt->execute();
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        if (empty($result)) {
-            return 0;
-        }
-        return intval($result['id']);
-    }
+    
 
     
 

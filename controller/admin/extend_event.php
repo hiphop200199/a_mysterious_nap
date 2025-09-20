@@ -36,6 +36,7 @@ class Extend_event extends Common
         $name = htmlspecialchars(strip_tags($_POST['name']));
         $voiceOver = htmlspecialchars(strip_tags($_POST['voice_over']));
         $initialSituationId = intval($_POST['initial_situation_id']);
+        $sequence = intval($_POST['sequence']);
         $image = $_FILES['image'];
         $allowFileTypes = ['image/png','image/jpg','image/jpeg','image/gif'];
         $imageSourceString = '';
@@ -55,7 +56,7 @@ class Extend_event extends Common
             }
         }
 
-        $result = $this->extend_event_model->create($initialSituationId,$name,$voiceOver,$imageSourceString);
+        $result = $this->extend_event_model->create($initialSituationId,$name,$voiceOver,$imageSourceString,$sequence);
         if ($result === SUCCESS) {
             $response = json_encode(['errCode' => SUCCESS, 'redirect' => 'list.php']);
             echo $response;
@@ -77,6 +78,7 @@ class Extend_event extends Common
         }
         $name = htmlspecialchars(strip_tags($_POST['name']));
         $voiceOver = htmlspecialchars(strip_tags($_POST['voice_over']));
+        $sequence = intval($_POST['sequence']);
         $image = empty($_FILES['image'])?'':$_FILES['image'];
         $allowFileTypes = ['image/png','image/jpg','image/jpeg','image/gif'];
         $oldImage = empty($checkExist['image'])?'':$checkExist['image'];
@@ -101,7 +103,7 @@ class Extend_event extends Common
             }
         }
        
-        $result = $this->extend_event_model->edit($id,$name,$voiceOver,$imageSourceString);
+        $result = $this->extend_event_model->edit($id,$name,$voiceOver,$imageSourceString,$sequence);
         if ($result === SUCCESS) {
             $response = json_encode(['errCode' => SUCCESS, 'redirect' => 'list.php']);
             echo $response;

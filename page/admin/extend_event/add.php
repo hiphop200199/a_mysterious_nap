@@ -30,6 +30,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/component/alertLB.php';
           <div> <input type="text" id="name" placeholder="請輸入名稱"><label for="" id="name-error" class="error">必填</label></div>
           <label for="">旁白</label>
           <div><textarea name="" id="voice-over"></textarea><label for="" id="voice-over-error" class="error">必填</label></div>
+          <label for="">內部順序</label>
+          <div><input type="number"  id="sequence" min="1"><label for="" id="sequence-error" class="error">必填</label></div>
           <label>圖片</label>
           <label for="image" id="upload-image">
             <img src="<?=ROOT.'/image/upload-image.png'?>" id="upload-image-source" alt="upload-image">

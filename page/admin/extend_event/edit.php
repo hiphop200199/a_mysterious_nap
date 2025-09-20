@@ -40,6 +40,8 @@ require_once $_SERVER['DOCUMENT_ROOT'] . '/component/alertLB.php';
           <div> <input type="text" id="name" value="<?=htmlspecialchars($info['name'])?>" placeholder="請輸入名稱"><label for="" id="name-error" class="error">必填</label></div>
           <label for="">旁白</label>
           <div><textarea name="" id="voice-over"><?=htmlspecialchars($info['voice_over'])?></textarea><label for="" id="voice-over-error" class="error">必填</label></div>
+          <label for="">內部順序</label>
+          <div><input type="number" value="<?=$info['sequence']?>"  id="sequence" min="1"><label for="" id="sequence-error" class="error">必填</label></div>
           <label for="">圖片</label>
           <label for="image" id="upload-image">
             <img src="<?= empty($info['image'])? ROOT.'/image/upload-image.png':ROOT.$info['image']?>" id="upload-image-source" alt="upload-image">
